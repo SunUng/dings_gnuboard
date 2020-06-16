@@ -50,6 +50,7 @@ if (G5_IS_MOBILE) {
 ?>
 <title><?php echo $g5_head_title; ?></title>
 <link rel="stylesheet" href="<?php echo run_replace('head_css_url', G5_THEME_CSS_URL.'/'.(G5_IS_MOBILE ? 'mobile' : 'default').'.css?ver='.G5_CSS_VER, G5_THEME_URL); ?>">
+<link rel="stylesheet" href="<?php echo G5_THEME_URL ?>/css/common.css">
 <meta name="robots" content="<?php echo $siteinfo['open'] === '1' ? 'index,follow' : 'noindex' ?>">
 <?php if (isVar($siteinfo['meta_kwd'])) { ?><meta name="keywords" content="<?php echo $siteinfo['meta_kwd'] ?>"><?php } ?>
 <?php if (isVar($siteinfo['meta_desc'])) { ?><meta name="description" content="<?php echo $siteinfo['meta_desc'] ?>"><?php } ?>
@@ -67,6 +68,7 @@ if (G5_IS_MOBILE) {
 <meta name="twitter:image" content="<?php echo $ogImage.'?ver='.$dingsVersion ?>">
 <?php if (isVar($siteinfo['meta_mstr'])) echo $siteinfo['meta_mstr'] ?>
 <?php if($config['cf_add_meta']) echo $config['cf_add_meta'].PHP_EOL; ?>
+<link rel="icon" href="data:;base64,iVBORw0KGgo=">
 <!--[if lte IE 8]>
 <script src="<?php echo G5_JS_URL ?>/html5.js"></script>
 <![endif]-->
@@ -98,15 +100,4 @@ if(!defined('G5_IS_ADMIN'))
     echo $config['cf_add_script'];
 ?>
 </head>
-<body<?php echo isset($g5['body_script']) ? $g5['body_script'] : ''; ?>>
-<?php
-if ($is_member) { // 회원이라면 로그인 중이라는 메세지를 출력해준다.
-    $sr_admin_msg = '';
-    if ($is_admin == 'super') $sr_admin_msg = "최고관리자 ";
-    else if ($is_admin == 'group') $sr_admin_msg = "그룹관리자 ";
-    else if ($is_admin == 'board') $sr_admin_msg = "게시판관리자 ";
-
-    echo '<div id="hd_login_msg">'.$sr_admin_msg.get_text($member['mb_nick']).'님 로그인 중 ';
-    echo '<a href="'.G5_BBS_URL.'/logout.php">로그아웃</a></div>';
-}
-?>
+<body class="<?php echo (defined('_INDEX_')) ? 'mainpage' : 'subpage' ?>"<?php if (isvar($mid)) echo ' id="'.$mid.'"' ?>>

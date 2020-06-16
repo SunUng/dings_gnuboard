@@ -311,7 +311,8 @@
     ini_set('display_errors', '1');
   }
 
-  // $mid = substr($mid, -1) === '/' ? substr($mid, 0, -1) : $mid; //$mid 에 / 붙어있을 때 제거
-
-
+  // gnb가져오기;
+  $gnb = getGnb();
+  $gnbMobile = getGnb('mobile');
+  $gnb['siblings'] = $gnb['sub'][$current['parent_order']];
 ?>
