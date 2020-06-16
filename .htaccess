@@ -1,0 +1,31 @@
+<IfModule mod_rewrite.c>
+ErrorDocument 404 /404.php
+RewriteEngine On
+RewriteBase /
+# RewriteRule ^page/(.*)/$ page/index.php?mid=$1 [L,QSA,NC]
+
+RewriteRule ^$ index.php [L]
+RewriteRule ^index.php$ index.php [L,QSA]
+RewriteCond $1 !^adm/(.*)
+RewriteCond $1 !^bbs/(.*)
+RewriteRule ^([0-9a-zA-Z_]+)$ templates/index.php?mid=$1 [L,QSA]
+
+
+#### 그누보드5 rewrite BEGIN #####
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+
+RewriteRule ^ - [L]
+#RewriteRule ^content/([0-9a-zA-Z_]+)$  bbs/content.php?co_id=$1&rewrite=1  [QSA,L]
+RewriteRule ^content/([^/]+)/$  bbs/content.php?co_seo_title=$1&rewrite=1      [QSA,L]
+RewriteRule ^board/rss/([0-9a-zA-Z_]+)$  bbs/rss.php?bo_table=$1        [QSA,L]
+# RewriteRule ^board/move.php$  bbs/move.php        [QSA,L]
+# RewriteRule ^board/move_update.php$  bbs/move_update.php        [QSA,L]
+RewriteRule ^board/board_list_update.php$  bbs/board_list_update.php        [QSA,L]
+RewriteRule ^board/([0-9a-zA-Z_]+)$  bbs/board.php?bo_table=$1&rewrite=1      [QSA,L]
+RewriteRule ^board/([0-9a-zA-Z_]+)/([^/]+)/$ bbs/board.php?bo_table=$1&wr_seo_title=$2&rewrite=1      [QSA,L]
+RewriteRule ^board/([0-9a-zA-Z_]+)/write$  bbs/write.php?bo_table=$1&rewrite=1    [QSA,L]
+RewriteRule ^board/([0-9a-zA-Z_]+)/([0-9]+)$  bbs/board.php?bo_table=$1&wr_id=$2&rewrite=1  [QSA,L]
+</IfModule>
+#### 그누보드5 rewrite END #####
