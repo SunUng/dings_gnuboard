@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -90,7 +89,7 @@
   }
 
   .bg-purple{
-      background: url('<?php echo G5_URL ?>/404/bg_purple.png');
+      background: url('./404/bg_purple.png');
       background-repeat: repeat-x;
       background-size: cover;
       background-position: left top;
@@ -259,7 +258,7 @@
   }
 
   .stars{
-      background: url('<?php echo G5_URL ?>/404/overlay_stars.svg');
+      background: url('./404/overlay_stars.svg');
       background-repeat: repeat;
       background-size: contain;
       background-position: left top;
@@ -338,16 +337,16 @@
                 페이지를 찾을 수 없습니다.
               </div>
             </div>
-            <a href="<?php echo G5_URL ?>" class="btn-go-home">처음으로 돌아가기</a>
+            <a href="." class="btn-go-home">처음으로 돌아가기</a>
         </div>
         <div class="objects">
-            <img class="object_rocket" src="<?php echo G5_URL ?>/404/rocket.svg" width="40px">
+            <img class="object_rocket" src="./404/rocket.svg" width="40px">
             <div class="earth-moon">
-                <img class="object_earth" src="<?php echo G5_URL ?>/404/earth.svg" width="100px">
-                <img class="object_moon" src="<?php echo G5_URL ?>/404/moon.svg" width="80px">
+                <img class="object_earth" src="./404/earth.svg" width="100px">
+                <img class="object_moon" src="./404/moon.svg" width="80px">
             </div>
             <div class="box_astronaut">
-                <img class="object_astronaut" src="<?php echo G5_URL ?>/404/astronaut.svg" width="140px">
+                <img class="object_astronaut" src="./404/astronaut.svg" width="140px">
             </div>
         </div>
         <div class="glowing_stars">

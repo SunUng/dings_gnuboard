@@ -8,9 +8,21 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 <?php if (file_exists(G5_THEME_PATH.'/js/'.$mid.'.min.js')) { ?>
 <script src="<?php echo G5_THEME_URL ?>/js/<?php echo $mid ?>.min.js?ver=<?php echo G5_JS_VER ?>"></script>
 <?php } ?>
-<?php if (!defined('_INDEX_')) { ?>
-<script src="<?php echo G5_THEME_URL ?>/js/subpage.min.js?ver=<?php echo G5_JS_VER ?>"></script>
+
+<?php if (defined('_INDEX_')) { ?>
+  <script src="<?php echo G5_THEME_URL ?>/js/plugin/dingsFullpage/dingsFullpage.js"></script>
+  
+  <!-- swiper -->
+  <?php add_stylesheet('<link rel="stylesheet" href="'.G5_THEME_URL.'/js/plugin/swiper/swiper.min.css">', 0); ?>
+  <script src="<?php echo G5_THEME_URL ?>/js/plugin/swiper/swiper.min.js"></script>
+  <!-- / swiper -->
+  <script src="<?php echo G5_THEME_URL ?>/js/mainpage.min.js?ver=<?php echo G5_JS_VER ?>"></script>
+
+<?php } else { ?>
+  <script src="<?php echo G5_THEME_URL ?>/js/plugin/gambit-scroll/gambit-smoothscroll.min.js?ver=<?php echo G5_JS_VER ?>"></script>
+  <script src="<?php echo G5_THEME_URL ?>/js/subpage.min.js?ver=<?php echo G5_JS_VER ?>"></script>  
 <?php } ?>
+
 <?php run_event('tail_sub'); ?>
 
 </body>
