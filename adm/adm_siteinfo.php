@@ -129,6 +129,18 @@ if (file_exists(DINGS_IMG_PATH.'/og_image.png')) {
 
       <div class="section-row">
         <div class="section-cell col col-title">
+          <label for="email">대표 이메일</label>
+        </div>
+        <div class="section-cell col col-content">
+          <span class="section-cell-memo">
+            모든 이메일 안내에서 사용됩니다.
+          </span>
+          <input type="text" value="<?php checkSetReturnEmpty($siteinfo['email']) ?>" name="email" id="email" class="text width1">
+        </div>
+      </div>
+
+      <div class="section-row">
+        <div class="section-cell col col-title">
           <label for="account">계좌번호</label>
         </div>
         <div class="section-cell col col-content">
@@ -141,7 +153,7 @@ if (file_exists(DINGS_IMG_PATH.'/og_image.png')) {
 
       <div class="section-row">
         <div class="section-cell col col-title">
-          <label for="biznum1">사업자등록번호</label>
+          <label for="biznum1">사업자등록번호 또는 고유번호</label>
         </div>
         <div class="section-cell col col-content">
           <span class="section-cell-memo">
@@ -172,6 +184,42 @@ if (file_exists(DINGS_IMG_PATH.'/og_image.png')) {
             홈페이지 하단 사업자 관련 정보 영역과 오시는 길 안내 등에 사용됩니다.
           </span>
           <input type="text" value="<?php checkSetReturnEmpty($siteinfo['address']) ?>" name="address" id="address" class="text width1">
+        </div>
+      </div>
+
+      <div class="section-row">
+        <div class="section-cell col col-title">
+          <label for="address2">사업장 상세주소</label>
+        </div>
+        <div class="section-cell col col-content">
+          <span class="section-cell-memo">
+            주소를 부연설명하는 설명을 입력해주세요.
+          </span>
+          <input type="text" value="<?php checkSetReturnEmpty($siteinfo['address2']) ?>" name="address2" id="address2" class="text width1">
+        </div>
+      </div>
+
+      <div class="section-row">
+        <div class="section-cell col col-title">
+          <label for="as_1">평일 운영시간</label>
+        </div>
+        <div class="section-cell col col-content">
+          <span class="section-cell-memo">
+            평일 운영시간 안내에 사용됩니다.
+          </span>
+          <input type="text" value="<?php checkSetReturnEmpty($siteinfo['as_1']) ?>" name="as_1" id="as_1" class="text width1">
+        </div>
+      </div>
+
+      <div class="section-row">
+        <div class="section-cell col col-title">
+          <label for="as_2">주말 운영시간</label>
+        </div>
+        <div class="section-cell col col-content">
+          <span class="section-cell-memo">
+            주말 운영시간 안내에 사용됩니다.
+          </span>
+          <input type="text" value="<?php checkSetReturnEmpty($siteinfo['as_2']) ?>" name="as_2" id="as_2" class="text width1">
         </div>
       </div>
 
