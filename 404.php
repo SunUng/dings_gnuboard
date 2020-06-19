@@ -7,7 +7,8 @@ include_once($serverRoot.'/common.php');
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>페이지를 찾을 수 없습니다.</title>
+  <meta name="robots" content="noindex">
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500i|Montserrat:400,500,600|Noto+Sans+KR:300,400,500,700|Reem+Kufi|Josefin+Sans:300,400,600,700&display=swap" rel="stylesheet">
   <style>
   body {
