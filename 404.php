@@ -9,6 +9,7 @@ include_once($serverRoot.'/common.php');
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>페이지를 찾을 수 없습니다.</title>
   <meta name="robots" content="noindex">
+  <link rel="icon" href="data:;base64,iVBORw0KGgo=">
   <link href="https://fonts.googleapis.com/css?family=Cormorant+Garamond:400,500i|Montserrat:400,500,600|Noto+Sans+KR:300,400,500,700|Reem+Kufi|Josefin+Sans:300,400,600,700&display=swap" rel="stylesheet">
   <style>
     body{line-height:1;overflow-x:hidden;font-family:'Montserrat','Noto Sans KR',sans-serif;word-break:keep-all;letter-spacing:-.057em;color:#080a14;font-size:17px}
@@ -101,9 +102,7 @@ include_once($serverRoot.'/common.php');
   </style>
 </head>
 <body class="bg-purple">
-        
     <div class="stars">
-
         <div class="central-body">
             <div class="ment">
               <div class="ment-top">
@@ -131,11 +130,8 @@ include_once($serverRoot.'/common.php');
             <div class="star"></div>
             <div class="star"></div>
             <div class="star"></div>
-
         </div>
-
     </div>
-
 </body>
 
 </html>
