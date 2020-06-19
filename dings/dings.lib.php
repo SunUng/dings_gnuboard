@@ -123,6 +123,7 @@
   function isMobile() {
       return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
   }
+  $isMobile = isMobile();
 
   //홈페이지 설정 값 리턴
   function getSiteinfo(){
@@ -195,17 +196,29 @@
     $result = sql_query($query);
     while($row = sql_fetch_array($result)) $gnbOriginal[] = $row;
     foreach($gnbOriginal as $index => $value) {
-      // 메뉴종류 > 템플릿여부 > URL 여부 순에 따라 URL 세팅
-      if ($value['m_type'] === 'board') $value[$prefix.'_url'] = G5_URL.'/board/'.$value['mid'];
-      else if (!empty($value['template'])) $value[$prefix.'_url'] = G5_URL.'/'.$value['mid'];
+     
       // 메인메뉴, 서브메뉴 각 배열에 담음
       if ($value['m_order'] === $value['parent_order']) $gnb['main'][$value['parent_order']] = $value;
       else $gnb['sub'][$value['parent_order']][] = $value;
     }
+
+    foreach($gnb['sub'] as $key => $mains) {
+      if (isvar($mains)) {
+        foreach($mains as $index => $value) {
+          // 메뉴종류 > 템플릿여부 > URL 여부 순에 따라 URL 세팅
+          if ($value['m_type'] === 'board') $gnb['sub'][$key][$index][$prefix.'_url'] = G5_URL.'/board/'.$value['mid'];
+          else if (!empty($value['template'])) $gnb['sub'][$key][$index][$prefix.'_url'] = G5_URL.'/'.$value['mid'];
+          else if (empty($value[$prefix.'_url'])) $gnb['sub'][$key][$index][$prefix.'_url'] = G5_URL.'/'.$value['mid'];
+        }
+      }
+
+    }
+      // var_dump($gnb['sub']['0100'][0]['m_url']);
     // 메인메뉴에 URL 세팅값이 없을 경우, 가장 근접한 서브메뉴의 URL을 가져오도록 함.
     foreach($gnb['main'] as $key => $value) {
       if ($value['m_type'] !== 'board' && empty($value[$prefix.'_url']) && empty($value['template'])) {
         $gnb['main'][$key][$prefix.'_url'] = $gnb['sub'][$key][0][$prefix.'_url'];
+        $gnb['main'][$key][$prefix.'_nw'] = $gnb['sub'][$key][0][$prefix.'_nw'];
       }
     }
     return $gnb;
@@ -297,8 +310,12 @@
   }
 
   function getMenuData($mid){
-    $result = sql_fetch("SELECT * FROM adm_menu WHERE mid = '{$mid}'");
-    return $result;
+    global $isMobile;
+    $device = $isMobile ? 'mb' : 'm';
+    $result = sql_fetch("SELECT * FROM adm_menu WHERE mid = '{$mid}' AND  {$device}_use = '1'");
+    $parent = sql_fetch("SELECT * FROM adm_menu WHERE m_order = '{$result['parent_order']}' AND  {$device}_use = '1'");
+    if ($parent) return $result;
+    else false;
   }
 
   $siteinfo = getSiteinfo();
@@ -316,5 +333,5 @@
   // gnb가져오기;
   $gnb = getGnb();
   $gnbMobile = getGnb('mobile');
-  $gnb['siblings'] = $gnb['sub'][$current['parent_order']];
+  
 ?>
