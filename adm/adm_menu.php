@@ -454,6 +454,7 @@ add_javascript('<script src="'.DINGS_JS.'/jquery-ui/jquery-ui.min.js"></script>'
         });
       });
     });
+    detectChangedOrder();
   };
   menuRowDataAdjust();
   // 메뉴 정렬값 (1000, 1001, 1002... 등) 재정렬, 그 값을 이용한 체크박스 id, for 문자열 재정리 끝 ------
