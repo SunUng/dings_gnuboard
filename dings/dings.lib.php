@@ -179,7 +179,7 @@
   function getGnb($device = 'pc'){
     $prefix = $device === 'mobile' ? 'mb' : 'm';
     // 사용중지 목록 순서값 배열에 담음
-    $query = "SELECT * FROM adm_menu WHERE {$prefix}_use != '1'";
+    $query = "SELECT * FROM adm_menu WHERE {$prefix}_use != '1' ORDER BY m_order+0 ASC";
     $result = sql_query($query);
     while($row = sql_fetch_array($result)) {
       $banOrderArr[] = $row['m_order'];
@@ -192,23 +192,28 @@
       }
     }
     // 사용중인 메뉴를 가져옴
-    $query = "SELECT * FROM adm_menu WHERE {$prefix}_use = '1'".$querySearch;
+    $query = "SELECT * FROM adm_menu WHERE {$prefix}_use = '1'{$querySearch} ORDER BY m_order+0 ASC";
     $result = sql_query($query);
     while($row = sql_fetch_array($result)) $gnbOriginal[] = $row;
     foreach($gnbOriginal as $index => $value) {
      
+      $parent_order = substr($value['m_order'], 0, 2).'00';
       // 메인메뉴, 서브메뉴 각 배열에 담음
-      if ($value['m_order'] === $value['parent_order']) $gnb['main'][$value['parent_order']] = $value;
-      else $gnb['sub'][$value['parent_order']][] = $value;
+      if ($value['m_order'] === $parent_order) $gnb['main'][$parent_order] = $value;
+      else $gnb['sub'][$parent_order][] = $value;
     }
 
     foreach($gnb['sub'] as $key => $mains) {
       if (isvar($mains)) {
         foreach($mains as $index => $value) {
           // 메뉴종류 > 템플릿여부 > URL 여부 순에 따라 URL 세팅
-          if ($value['m_type'] === 'board') $gnb['sub'][$key][$index][$prefix.'_url'] = G5_URL.'/board/'.$value['mid'];
-          else if (!empty($value['template'])) $gnb['sub'][$key][$index][$prefix.'_url'] = G5_URL.'/'.$value['mid'];
-          else if (empty($value[$prefix.'_url'])) $gnb['sub'][$key][$index][$prefix.'_url'] = G5_URL.'/'.$value['mid'];
+          // if ($value['m_type'] === 'board') $gnb['sub'][$key][$index][$prefix.'_url'] = G5_URL.'/board/'.$value['mid'];
+          // else if (!empty($value['template'])) $gnb['sub'][$key][$index][$prefix.'_url'] = G5_URL.'/'.$value['mid'];
+          // else if (empty($value[$prefix.'_url'])) $gnb['sub'][$key][$index][$prefix.'_url'] = G5_URL.'/'.$value['mid'];
+
+          if ($value['m_type'] === 'board') $gnb['sub'][$key][$index][$prefix.'_url'] = G5_URL.'/'.$value['mid'];
+          // else if (!empty($value['template'])) $gnb['sub'][$key][$index][$prefix.'_url'] = G5_URL.'/document/'.$value['mid'];
+          else if (empty($value[$prefix.'_url'])) $gnb['sub'][$key][$index][$prefix.'_url'] = G5_URL.'/document/'.$value['mid'];
         }
       }
 
@@ -333,5 +338,4 @@
   // gnb가져오기;
   $gnb = getGnb();
   $gnbMobile = getGnb('mobile');
-  
 ?>

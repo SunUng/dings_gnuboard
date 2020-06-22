@@ -583,8 +583,15 @@ add_javascript('<script src="'.DINGS_JS.'/jquery-ui/jquery-ui.min.js"></script>'
     oldEle.each(function(i, v){
       var currentOrder = $(this).next('.current_order').val();
       if ($(this).val() !== currentOrder) {
+        $(this).closest('tr').not('.new').find('input.todo').val('changed');
+      }
+    });
+    var oldParentOrder = $('#form-menu tr.original').not('.removed').find('.parent_order');
+    oldParentOrder.each(function(i, v){
+      var currentParent = $(this).next('.parent_order').val();
+      if ($(this).val() !== currentParent) {
          var parentOrder = $(this).closest('.table-menu-list').find('thead input.current_order').val();
-         parentOrder = parentOrder.length > 0 ? parentOrder : '';
+        //  parentOrder = parentOrder.length > 0 ? parentOrder : '';
         $(this).closest('tr').not('.new').find('input.parent_order').val(parentOrder);
         $(this).closest('tr').not('.new').find('input.todo').val('changed');
       }
