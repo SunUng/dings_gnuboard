@@ -447,7 +447,6 @@ box-sizing:content-box;
 
 /* 팝업레이어 */
 .hd_pops {
-  // border-color:rgba(0,0,0,0.08);
   border-color:black;
   overflow:hidden;
 }
