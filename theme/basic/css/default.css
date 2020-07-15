@@ -445,3 +445,23 @@ box-sizing:content-box;
 /* Mobile화면으로 */
 #device_change {display:block;margin:0.3em;padding:0.5em 0;border:1px solid #eee;border-radius:2em;background:#fff;color:#000;font-size:2em;text-decoration:none;text-align:center}
 
+/* 팝업레이어 */
+.hd_pops {
+  // border-color:rgba(0,0,0,0.08);
+  border-color:black;
+  overflow:hidden;
+}
+.hd_pops_footer {
+  font-size:12px;
+}
+#hd_pop {
+  width:100%;
+}
+.hd_pops_footer {
+  border-top:1px solid black;
+  padding-top:1px;
+}
+.hd_pops_footer .hd_pops_close {
+  float:right;
+  position:static;
+}

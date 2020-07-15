@@ -1,6 +1,14 @@
 <?php
   if (!defined('_GNUBOARD_')) exit;
 
+  // // 모바일 확인
+  // function isMobile() {
+  //     return preg_match("/(android|avantgo|blackberry|bolt|boost|cricket|docomo|fone|hiptop|mini|mobi|palm|phone|pie|tablet|up\.browser|up\.link|webos|wos)/i", $_SERVER["HTTP_USER_AGENT"]);
+  // }
+  include_once(G5_PATH.'/dings/isMobile.php');
+  $detect = new Mobile_Detect;
+  $isMobile = $detect->isMobile();
+
   // 사이트 정보 초기화
   function initSiteinfo(){
     $createSiteinfo = "
