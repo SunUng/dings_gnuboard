@@ -111,7 +111,7 @@ if ($saveFlag === true) {
   if (isset($changed) && !empty($changed)) {
     foreach($changed as $index => $value) {
 
-      $old_query = "SELECT * FROM adm_menu WHERE id = {$value[id]}";
+      $old_query = "SELECT * FROM adm_menu WHERE `id` = {$value['id']}";
       $old_result = sql_fetch($old_query);
 
       $value['m_use'] = validateCheckbox($value['m_use']);
@@ -120,19 +120,19 @@ if ($saveFlag === true) {
       $value['mb_nw'] = validateCheckbox($value['mb_nw']);
 
       $update_query = "UPDATE adm_menu
-        SET       m_order   = '{$value[m_order]}',
-                  mid       = '{$value[mid]}',
-                  m_title   = '{$value[m_title]}',
-                  m_type    = '{$value[m_type]}',
-                  m_use     = {$value[m_use]},
-                  m_nw      = {$value[m_nw]},
-                  m_url     = '{$value[m_url]}',
-                  mb_use    = {$value[mb_use]},
-                  mb_nw     = {$value[mb_nw]},
-                  mb_url     = '{$value[mb_url]}',
-                  template  = '{$value[template]}',
-                  parent_order = '{$value[parent_order]}'
-        WHERE id = {$value[id]}
+        SET       `m_order`   = '{$value['m_order']}',
+                  `mid`       = '{$value['mid']}',
+                  `m_title`   = '{$value['m_title']}',
+                  `m_type`    = '{$value['m_type']}',
+                  `m_use`     = {$value['m_use']},
+                  `m_nw`      = {$value['m_nw']},
+                  `m_url`     = '{$value['m_url']}',
+                  `mb_use`    = {$value['mb_use']},
+                  `mb_nw`     = {$value['mb_nw']},
+                  `mb_url`     = '{$value['mb_url']}',
+                  `template`  = '{$value['template']}',
+                  `parent_order` = '{$value['parent_order']}'
+        WHERE `id` = {$value['id']}
       ";
       $update_result = sql_query($update_query);
       // if ($update_result) {
